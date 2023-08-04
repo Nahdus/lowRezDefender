@@ -1,0 +1,255 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://script/invaders.gd" type="Script" id=1]
+[ext_resource path="res://assets/guide/invaders.png" type="Texture" id=2]
+[ext_resource path="res://assets/guide/sensor.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/invaders-Sheet.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 4, 4 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 4, 0, 4, 4 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "running",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="invader" type="KinematicBody2D"]
+rotation = 4.71239
+script = ExtResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1, -1 )
+z_index = 1
+frames = SubResource( 5 )
+animation = "running"
+frame = 1
+playing = true
+
+[node name="guidingSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1, -1 )
+z_index = 1
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.1, 0.1 )
+shape = SubResource( 2 )
+
+[node name="pathfinder22" type="Node2D" parent="."]
+visible = false
+
+[node name="pathFinder1" type="Position2D" parent="pathfinder22"]
+position = Vector2( -1, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder22/pathFinder1"]
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder2" type="Position2D" parent="pathfinder22"]
+position = Vector2( -2, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder22/pathFinder2"]
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder3" type="Position2D" parent="pathfinder22"]
+position = Vector2( -2, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder22/pathFinder3"]
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder67" type="Node2D" parent="."]
+visible = false
+
+[node name="pathFinder1" type="Position2D" parent="pathfinder67"]
+position = Vector2( -2, 0 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder67/pathFinder1"]
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder2" type="Position2D" parent="pathfinder67"]
+position = Vector2( -2, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder67/pathFinder2"]
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder3" type="Position2D" parent="pathfinder67"]
+position = Vector2( -3, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder67/pathFinder3"]
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder112" type="Node2D" parent="."]
+visible = false
+
+[node name="pathFinder1" type="Position2D" parent="pathfinder112"]
+position = Vector2( -1, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder112/pathFinder1"]
+position = Vector2( 5.96046e-08, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder2" type="Position2D" parent="pathfinder112"]
+position = Vector2( -1, 3 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder112/pathFinder2"]
+position = Vector2( 2.38419e-07, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder3" type="Position2D" parent="pathfinder112"]
+position = Vector2( -2, 3 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder112/pathFinder3"]
+position = Vector2( 1.19209e-07, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder167" type="Node2D" parent="."]
+visible = false
+
+[node name="pathFinder1" type="Position2D" parent="pathfinder167"]
+position = Vector2( -2, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder167/pathFinder1"]
+position = Vector2( 5.96046e-08, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder2" type="Position2D" parent="pathfinder167"]
+position = Vector2( -2, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder167/pathFinder2"]
+position = Vector2( 2.38419e-07, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder3" type="Position2D" parent="pathfinder167"]
+position = Vector2( -3, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder167/pathFinder3"]
+position = Vector2( 1.19209e-07, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder212" type="Node2D" parent="."]
+visible = false
+
+[node name="pathFinder1" type="Position2D" parent="pathfinder212"]
+position = Vector2( 2.38419e-07, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder212/pathFinder1"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder2" type="Position2D" parent="pathfinder212"]
+position = Vector2( -1, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder212/pathFinder2"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder4" type="Position2D" parent="pathfinder212"]
+position = Vector2( -1, 3 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder212/pathFinder4"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder257" type="Node2D" parent="."]
+visible = false
+
+[node name="pathFinder1" type="Position2D" parent="pathfinder257"]
+position = Vector2( -1, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder257/pathFinder1"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder2" type="Position2D" parent="pathfinder257"]
+position = Vector2( -1, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder257/pathFinder2"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder4" type="Position2D" parent="pathfinder257"]
+position = Vector2( -2, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder257/pathFinder4"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder302" type="Node2D" parent="."]
+visible = false
+
+[node name="pathFinder1" type="Position2D" parent="pathfinder302"]
+position = Vector2( 0, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder302/pathFinder1"]
+position = Vector2( -1, 0 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder2" type="Position2D" parent="pathfinder302"]
+position = Vector2( -1, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder302/pathFinder2"]
+position = Vector2( -1, 0 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder4" type="Position2D" parent="pathfinder302"]
+position = Vector2( -1, 2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder302/pathFinder4"]
+position = Vector2( -1, -2.38419e-07 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder347" type="Node2D" parent="."]
+
+[node name="pathFinder1" type="Position2D" parent="pathfinder347"]
+position = Vector2( -1, 0 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder347/pathFinder1"]
+position = Vector2( -1, 0 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder2" type="Position2D" parent="pathfinder347"]
+position = Vector2( -1, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder347/pathFinder2"]
+position = Vector2( -1, 0 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathFinder4" type="Position2D" parent="pathfinder347"]
+position = Vector2( -2, 1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder347/pathFinder4"]
+position = Vector2( -1, -2.38419e-07 )
+texture = ExtResource( 3 )
+offset = Vector2( 0.5, 0.5 )

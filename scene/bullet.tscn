@@ -1,0 +1,192 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/art/bullett.png" type="Texture" id=1]
+[ext_resource path="res://assets/guide/sensor.png" type="Texture" id=2]
+[ext_resource path="res://script/bullet.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 3, 3 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 1 )
+region = Rect2( 3, 0, 3, 3 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 1 )
+region = Rect2( 6, 0, 3, 3 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 1 )
+region = Rect2( 9, 0, 3, 3 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 1 )
+region = Rect2( 12, 0, 3, 3 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 1 )
+region = Rect2( 15, 0, 3, 3 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "fire",
+"speed": 14.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=22]
+
+[node name="bullet" type="KinematicBody2D"]
+rotation = 3.14159
+z_index = 1
+collision_layer = 4
+collision_mask = 8
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 21 )
+animation = "fire"
+frame = 2
+playing = true
+offset = Vector2( 0.5, 0.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.05, 0.05 )
+shape = SubResource( 22 )
+
+[node name="pathfinder22" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.65098 )
+z_index = -1
+
+[node name="Position1" type="Position2D" parent="pathfinder22"]
+position = Vector2( 0, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder22/Position1"]
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position2" type="Position2D" parent="pathfinder22"]
+position = Vector2( 1, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder22/Position2"]
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position3" type="Position2D" parent="pathfinder22"]
+position = Vector2( 1, -2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder22/Position3"]
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder67" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.65098 )
+z_index = -1
+
+[node name="Position1" type="Position2D" parent="pathfinder67"]
+
+[node name="Sprite" type="Sprite" parent="pathfinder67/Position1"]
+position = Vector2( -8.74228e-08, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position2" type="Position2D" parent="pathfinder67"]
+position = Vector2( -1, 0 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder67/Position2"]
+position = Vector2( 0, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position3" type="Position2D" parent="pathfinder67"]
+position = Vector2( -1, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder67/Position3"]
+position = Vector2( -1.19209e-07, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder112" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.65098 )
+z_index = -1
+
+[node name="Position1" type="Position2D" parent="pathfinder112"]
+
+[node name="Sprite" type="Sprite" parent="pathfinder112/Position1"]
+position = Vector2( -8.74228e-08, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position2" type="Position2D" parent="pathfinder112"]
+position = Vector2( 1, -4.37114e-08 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder112/Position2"]
+position = Vector2( 0, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position3" type="Position2D" parent="pathfinder112"]
+position = Vector2( 1, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder112/Position3"]
+position = Vector2( -1.19209e-07, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder157" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.65098 )
+z_index = -1
+
+[node name="Position1" type="Position2D" parent="pathfinder157"]
+position = Vector2( 1, -8.74228e-08 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder157/Position1"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position2" type="Position2D" parent="pathfinder157"]
+
+[node name="Sprite" type="Sprite" parent="pathfinder157/Position2"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position3" type="Position2D" parent="pathfinder157"]
+position = Vector2( 0, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder157/Position3"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder202" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.65098 )
+z_index = -1
+
+[node name="Position1" type="Position2D" parent="pathfinder202"]
+position = Vector2( 1, -8.74228e-08 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder202/Position1"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position2" type="Position2D" parent="pathfinder202"]
+position = Vector2( 2, -1.74846e-07 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder202/Position2"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position3" type="Position2D" parent="pathfinder202"]
+position = Vector2( 2, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder202/Position3"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )

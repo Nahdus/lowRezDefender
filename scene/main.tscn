@@ -1,0 +1,150 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/guide/pixel.png" type="Texture" id=1]
+[ext_resource path="res://assets/guide/pathOfInvader16.png" type="Texture" id=2]
+[ext_resource path="res://script/invadersSystem.gd" type="Script" id=3]
+[ext_resource path="res://script/planetArea.gd" type="Script" id=4]
+[ext_resource path="res://script/path.gd" type="Script" id=5]
+[ext_resource path="res://assets/art/bg.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/rotatingPlanet.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/gun.png" type="Texture" id=8]
+[ext_resource path="res://script/defenders.gd" type="Script" id=9]
+[ext_resource path="res://script/bullets.gd" type="Script" id=10]
+
+[sub_resource type="TileSet" id=1]
+0/name = "pixel.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 1, 1 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 6, 6 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 6, 0, 6, 6 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 12, 0, 6, 6 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 18, 0, 6, 6 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 7 )
+region = Rect2( 24, 0, 6, 6 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 7 )
+region = Rect2( 30, 0, 6, 6 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 3, 3 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 8 )
+region = Rect2( 3, 0, 3, 3 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 8 )
+region = Rect2( 6, 0, 3, 3 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "gun",
+"speed": 5.0
+} ]
+
+[node name="main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 32, 32 )
+current = true
+zoom = Vector2( 0.1, 0.1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.117647, 0.113725, 0.113725, 1 )
+position = Vector2( 32, 32 )
+z_index = -1
+texture = ExtResource( 2 )
+
+[node name="map" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 1, 1 )
+format = 1
+tile_data = PoolIntArray( 17, 0, 0, 46, 0, 0, 65553, 0, 0, 65582, 0, 0, 131090, 0, 0, 131117, 0, 0, 196626, 0, 0, 196653, 0, 0, 262163, 0, 0, 262188, 0, 0, 327699, 0, 0, 327724, 0, 0, 393236, 0, 0, 393259, 0, 0, 458772, 0, 0, 458795, 0, 0, 524309, 0, 0, 524330, 0, 0, 589845, 0, 0, 589866, 0, 0, 655382, 0, 0, 655401, 0, 0, 720918, 0, 0, 720937, 0, 0, 786454, 0, 0, 786473, 0, 0, 851991, 0, 0, 852008, 0, 0, 917527, 0, 0, 917544, 0, 0, 983064, 0, 0, 983079, 0, 0, 1048600, 0, 0, 1048615, 0, 0, 1114137, 0, 0, 1114150, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179673, 0, 0, 1179686, 0, 0, 1179710, 0, 0, 1179711, 0, 0, 1245186, 0, 0, 1245187, 0, 0, 1245210, 0, 0, 1245221, 0, 0, 1245244, 0, 0, 1245245, 0, 0, 1310724, 0, 0, 1310725, 0, 0, 1310746, 0, 0, 1310757, 0, 0, 1310778, 0, 0, 1310779, 0, 0, 1376262, 0, 0, 1376263, 0, 0, 1376264, 0, 0, 1376282, 0, 0, 1376293, 0, 0, 1376311, 0, 0, 1376312, 0, 0, 1376313, 0, 0, 1441801, 0, 0, 1441802, 0, 0, 1441819, 0, 0, 1441828, 0, 0, 1441845, 0, 0, 1441846, 0, 0, 1507339, 0, 0, 1507340, 0, 0, 1507341, 0, 0, 1507355, 0, 0, 1507364, 0, 0, 1507378, 0, 0, 1507379, 0, 0, 1507380, 0, 0, 1572878, 0, 0, 1572879, 0, 0, 1572892, 0, 0, 1572899, 0, 0, 1572912, 0, 0, 1572913, 0, 0, 1638416, 0, 0, 1638417, 0, 0, 1638428, 0, 0, 1638435, 0, 0, 1638446, 0, 0, 1638447, 0, 0, 1703954, 0, 0, 1703955, 0, 0, 1703956, 0, 0, 1703965, 0, 0, 1703970, 0, 0, 1703979, 0, 0, 1703980, 0, 0, 1703981, 0, 0, 1769493, 0, 0, 1769494, 0, 0, 1769501, 0, 0, 1769506, 0, 0, 1769513, 0, 0, 1769514, 0, 0, 1835031, 0, 0, 1835032, 0, 0, 1835033, 0, 0, 1835038, 0, 0, 1835041, 0, 0, 1835046, 0, 0, 1835047, 0, 0, 1835048, 0, 0, 1900570, 0, 0, 1900571, 0, 0, 1900574, 0, 0, 1900577, 0, 0, 1900580, 0, 0, 1900581, 0, 0, 1966108, 0, 0, 1966109, 0, 0, 1966111, 0, 0, 1966112, 0, 0, 1966114, 0, 0, 1966115, 0, 0, 2031646, 0, 0, 2031647, 0, 0, 2031648, 0, 0, 2031649, 0, 0, 2097182, 0, 0, 2097183, 0, 0, 2097184, 0, 0, 2097185, 0, 0, 2162716, 0, 0, 2162717, 0, 0, 2162719, 0, 0, 2162720, 0, 0, 2162722, 0, 0, 2162723, 0, 0, 2228250, 0, 0, 2228251, 0, 0, 2228254, 0, 0, 2228257, 0, 0, 2228260, 0, 0, 2228261, 0, 0, 2293783, 0, 0, 2293784, 0, 0, 2293785, 0, 0, 2293790, 0, 0, 2293793, 0, 0, 2293798, 0, 0, 2293799, 0, 0, 2293800, 0, 0, 2359317, 0, 0, 2359318, 0, 0, 2359325, 0, 0, 2359330, 0, 0, 2359337, 0, 0, 2359338, 0, 0, 2424850, 0, 0, 2424851, 0, 0, 2424852, 0, 0, 2424861, 0, 0, 2424866, 0, 0, 2424875, 0, 0, 2424876, 0, 0, 2424877, 0, 0, 2490384, 0, 0, 2490385, 0, 0, 2490396, 0, 0, 2490403, 0, 0, 2490414, 0, 0, 2490415, 0, 0, 2555918, 0, 0, 2555919, 0, 0, 2555932, 0, 0, 2555939, 0, 0, 2555952, 0, 0, 2555953, 0, 0, 2621451, 0, 0, 2621452, 0, 0, 2621453, 0, 0, 2621467, 0, 0, 2621476, 0, 0, 2621490, 0, 0, 2621491, 0, 0, 2621492, 0, 0, 2686985, 0, 0, 2686986, 0, 0, 2687003, 0, 0, 2687012, 0, 0, 2687029, 0, 0, 2687030, 0, 0, 2752518, 0, 0, 2752519, 0, 0, 2752520, 0, 0, 2752538, 0, 0, 2752549, 0, 0, 2752567, 0, 0, 2752568, 0, 0, 2752569, 0, 0, 2818052, 0, 0, 2818053, 0, 0, 2818074, 0, 0, 2818085, 0, 0, 2818106, 0, 0, 2818107, 0, 0, 2883586, 0, 0, 2883587, 0, 0, 2883610, 0, 0, 2883621, 0, 0, 2883644, 0, 0, 2883645, 0, 0, 2949120, 0, 0, 2949121, 0, 0, 2949145, 0, 0, 2949158, 0, 0, 2949182, 0, 0, 2949183, 0, 0, 3014681, 0, 0, 3014694, 0, 0, 3080216, 0, 0, 3080231, 0, 0, 3145752, 0, 0, 3145767, 0, 0, 3211287, 0, 0, 3211304, 0, 0, 3276823, 0, 0, 3276840, 0, 0, 3342358, 0, 0, 3342377, 0, 0, 3407894, 0, 0, 3407913, 0, 0, 3473430, 0, 0, 3473449, 0, 0, 3538965, 0, 0, 3538986, 0, 0, 3604501, 0, 0, 3604522, 0, 0, 3670036, 0, 0, 3670059, 0, 0, 3735572, 0, 0, 3735595, 0, 0, 3801107, 0, 0, 3801132, 0, 0, 3866643, 0, 0, 3866668, 0, 0, 3932178, 0, 0, 3932205, 0, 0, 3997714, 0, 0, 3997741, 0, 0, 4063249, 0, 0, 4063278, 0, 0, 4128785, 0, 0, 4128814, 0, 0 )
+script = ExtResource( 5 )
+
+[node name="bg" type="Sprite" parent="map"]
+position = Vector2( 32, 32 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="invaders" type="Node2D" parent="map"]
+script = ExtResource( 3 )
+
+[node name="InvaderTimer" type="Timer" parent="map/invaders"]
+wait_time = 1.5
+
+[node name="planetArea" type="Area2D" parent="map"]
+position = Vector2( 32, 32 )
+collision_mask = 8
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="map/planetArea"]
+scale = Vector2( 0.2, 0.2 )
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="map/planetArea"]
+z_index = 1
+frames = SubResource( 9 )
+frame = 4
+playing = true
+
+[node name="defenders" type="Node2D" parent="map"]
+script = ExtResource( 9 )
+
+[node name="turret" type="Node2D" parent="map/defenders"]
+visible = false
+position = Vector2( 34, 26 )
+z_index = 1
+
+[node name="Sprite" type="AnimatedSprite" parent="map/defenders/turret"]
+position = Vector2( 0, 2 )
+frames = SubResource( 12 )
+animation = "gun"
+frame = 2
+playing = true
+offset = Vector2( 0.5, -0.5 )
+
+[node name="bullets" type="Node2D" parent="map/defenders"]
+script = ExtResource( 10 )
+
+[connection signal="timeout" from="map/invaders/InvaderTimer" to="map/invaders" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="map/planetArea" to="map/planetArea" method="_on_planetArea_body_entered"]

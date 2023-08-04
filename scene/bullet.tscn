@@ -39,25 +39,26 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=22]
 
 [node name="bullet" type="KinematicBody2D"]
-rotation = 3.14159
 z_index = 1
 collision_layer = 4
 collision_mask = 8
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+modulate = Color( 0.886275, 0.0666667, 0.0666667, 1 )
 frames = SubResource( 21 )
 animation = "fire"
-frame = 2
-playing = true
+frame = 1
 offset = Vector2( 0.5, 0.5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0.5, 0.5 )
 scale = Vector2( 0.05, 0.05 )
 shape = SubResource( 22 )
 
 [node name="pathfinder22" type="Node2D" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.65098 )
 z_index = -1
 
@@ -83,6 +84,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 0.5, 0.5 )
 
 [node name="pathfinder67" type="Node2D" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.65098 )
 z_index = -1
 
@@ -110,6 +112,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 0.5, 0.5 )
 
 [node name="pathfinder112" type="Node2D" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.65098 )
 z_index = -1
 
@@ -137,6 +140,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 0.5, 0.5 )
 
 [node name="pathfinder157" type="Node2D" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.65098 )
 z_index = -1
 
@@ -164,11 +168,12 @@ texture = ExtResource( 2 )
 offset = Vector2( 0.5, 0.5 )
 
 [node name="pathfinder202" type="Node2D" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.65098 )
 z_index = -1
 
 [node name="Position1" type="Position2D" parent="pathfinder202"]
-position = Vector2( 1, -8.74228e-08 )
+position = Vector2( 1, -1.19209e-07 )
 
 [node name="Sprite" type="Sprite" parent="pathfinder202/Position1"]
 position = Vector2( -1, -1 )
@@ -188,5 +193,88 @@ position = Vector2( 2, -1 )
 
 [node name="Sprite" type="Sprite" parent="pathfinder202/Position3"]
 position = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder247" type="Node2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.65098 )
+z_index = -1
+
+[node name="Position1" type="Position2D" parent="pathfinder247"]
+position = Vector2( 1, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder247/Position1"]
+position = Vector2( -1, 1.19209e-07 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position2" type="Position2D" parent="pathfinder247"]
+position = Vector2( 0, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder247/Position2"]
+position = Vector2( -1, 0 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position3" type="Position2D" parent="pathfinder247"]
+position = Vector2( 0, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder247/Position3"]
+position = Vector2( -1, -1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder292" type="Node2D" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.65098 )
+z_index = -1
+
+[node name="Position1" type="Position2D" parent="pathfinder292"]
+position = Vector2( 1, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder292/Position1"]
+position = Vector2( -1, 1.19209e-07 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position2" type="Position2D" parent="pathfinder292"]
+position = Vector2( 1, -2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder292/Position2"]
+position = Vector2( -1, 0 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position3" type="Position2D" parent="pathfinder292"]
+position = Vector2( 2, -2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder292/Position3"]
+position = Vector2( -1, 0 )
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="pathfinder337" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.65098 )
+z_index = -1
+
+[node name="Position1" type="Position2D" parent="pathfinder337"]
+position = Vector2( 0, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder337/Position1"]
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position2" type="Position2D" parent="pathfinder337"]
+position = Vector2( -1, -1 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder337/Position2"]
+texture = ExtResource( 2 )
+offset = Vector2( 0.5, 0.5 )
+
+[node name="Position3" type="Position2D" parent="pathfinder337"]
+position = Vector2( -1, -2 )
+
+[node name="Sprite" type="Sprite" parent="pathfinder337/Position3"]
 texture = ExtResource( 2 )
 offset = Vector2( 0.5, 0.5 )

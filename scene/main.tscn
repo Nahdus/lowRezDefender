@@ -84,6 +84,7 @@ animations = [ {
 [node name="main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 32, 32 )
 current = true
 zoom = Vector2( 0.1, 0.1 )
@@ -102,6 +103,7 @@ tile_data = PoolIntArray( 17, 0, 0, 46, 0, 0, 65553, 0, 0, 65582, 0, 0, 131090, 
 script = ExtResource( 5 )
 
 [node name="bg" type="Sprite" parent="map"]
+visible = false
 position = Vector2( 32, 32 )
 z_index = 1
 texture = ExtResource( 6 )
@@ -124,7 +126,7 @@ shape = SubResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="map/planetArea"]
 z_index = 1
 frames = SubResource( 9 )
-frame = 4
+frame = 5
 playing = true
 
 [node name="defenders" type="Node2D" parent="map"]
@@ -139,7 +141,6 @@ z_index = 1
 position = Vector2( 0, 2 )
 frames = SubResource( 12 )
 animation = "gun"
-frame = 2
 playing = true
 offset = Vector2( 0.5, -0.5 )
 

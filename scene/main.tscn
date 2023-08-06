@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/guide/pixel.png" type="Texture" id=1]
 [ext_resource path="res://assets/guide/pathOfInvader16.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://script/path.gd" type="Script" id=5]
 [ext_resource path="res://assets/art/bg.png" type="Texture" id=6]
 [ext_resource path="res://assets/art/rotatingPlanet.png" type="Texture" id=7]
-[ext_resource path="res://assets/art/gun.png" type="Texture" id=8]
 [ext_resource path="res://script/defenders.gd" type="Script" id=9]
 [ext_resource path="res://script/bullets.gd" type="Script" id=10]
 
@@ -61,30 +60,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 3, 3 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 8 )
-region = Rect2( 3, 0, 3, 3 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 8 )
-region = Rect2( 6, 0, 3, 3 )
-
-[sub_resource type="SpriteFrames" id=12]
-animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
-"loop": true,
-"name": "gun",
-"speed": 5.0
-} ]
-
 [node name="main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 position = Vector2( 32, 32 )
 current = true
 zoom = Vector2( 0.1, 0.1 )
@@ -103,7 +81,6 @@ tile_data = PoolIntArray( 17, 0, 0, 46, 0, 0, 65553, 0, 0, 65582, 0, 0, 131090, 
 script = ExtResource( 5 )
 
 [node name="bg" type="Sprite" parent="map"]
-visible = false
 position = Vector2( 32, 32 )
 z_index = 1
 texture = ExtResource( 6 )
@@ -131,18 +108,6 @@ playing = true
 
 [node name="defenders" type="Node2D" parent="map"]
 script = ExtResource( 9 )
-
-[node name="turret" type="Node2D" parent="map/defenders"]
-visible = false
-position = Vector2( 34, 26 )
-z_index = 1
-
-[node name="Sprite" type="AnimatedSprite" parent="map/defenders/turret"]
-position = Vector2( 0, 2 )
-frames = SubResource( 12 )
-animation = "gun"
-playing = true
-offset = Vector2( 0.5, -0.5 )
 
 [node name="bullets" type="Node2D" parent="map/defenders"]
 script = ExtResource( 10 )

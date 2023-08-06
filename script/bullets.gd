@@ -13,7 +13,7 @@ var bullet_path
 func _ready():
 	
 #	print_debug(bullet_path)
-	spawn_bullet(7)
+	spawn_bullet(0)
 	pass # Replace with function body.
 
 

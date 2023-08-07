@@ -23,6 +23,9 @@ var passive_state
 var Turret = load("res://scene/turret.tscn")
 # Called when the node enters the scene tree for the first time
 
+var bullet_timer_cooled = true
+
+
 func set_up_state(machine,state_object):
 	var state = state_object.new()
 	machine.set_target(self)
@@ -52,7 +55,6 @@ func clear_turrets():
 	var childeren = get_children()
 	for each in childeren:
 		if "turret" in each.name:
-			print_debug(each)
 			each.queue_free()
 
 func position_turret():
@@ -75,8 +77,6 @@ func rotate_left():
 	for idx in range(len(active_turret)):
 		rotated_turret[idx] = original_turret[(rotation_offset+idx)%len(original_turret)]
 	active_turret=rotated_turret
-	print_debug(rotation_offset)
-	print_debug(active_turret)
 	position_turret()
 	
 func rotate_right():
@@ -91,8 +91,6 @@ func rotate_right():
 	for idx in range(len(active_turret)):
 		rotated_turret[idx] = original_turret[(rotation_offset+idx)%len(original_turret)]
 	active_turret=rotated_turret
-	print_debug(rotation_offset)
-	print_debug(active_turret)
 	position_turret()
 	
 func get_bullet_map():
@@ -103,6 +101,22 @@ func _process(delta):
 	
 	
 func fire_turret():
-	for idx in range(len(active_turret)):
-		if active_turret[idx] == 1:
-			$bullets.spawn_bullet(idx)
+	if bullet_timer_cooled:
+		for idx in range(len(active_turret)):
+			if active_turret[idx] == 1:
+				$bullets.spawn_bullet(idx)
+		bullet_timer_cooled = false
+		$bullet_cooldown.start()
+
+
+func add_debries(pos):
+	print_debug("debri")
+	print_debug(pos)
+	$debris.add_debri_at(pos)
+	pass
+	
+
+
+func _on_bullet_cooldown_timeout():
+	bullet_timer_cooled = true
+	pass # Replace with function body.

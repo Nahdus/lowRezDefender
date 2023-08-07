@@ -56,6 +56,9 @@ func reposition(pos:Vector2):
 	self.set_position(Vector2(pos.x,pos.y)+currentShiftOffset)
 	find_next_pos()
 
+func despawn_invader():
+	self.queue_free()
+
 func update_position():
 	var pos=find_next_pos()
 	if !pos:
@@ -71,3 +74,19 @@ func _process(delta):
 			update_position()
 			_time = 0
 	
+func shatter_invader():
+	get_parent().add_debris(self.position)
+	$Sprite.visible = false
+	$despawn_timer.start()
+	
+
+func _on_Area2D_body_entered(body):
+	if "bullet" in body.name:
+#		print_debug("hit by a bullet")
+		shatter_invader()
+	pass # Replace with function body.
+
+
+func _on_despawn_timer_timeout():
+	self.queue_free()
+	pass # Replace with function body.

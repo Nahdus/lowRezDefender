@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/guide/pixel.png" type="Texture" id=1]
 [ext_resource path="res://assets/guide/pathOfInvader16.png" type="Texture" id=2]
@@ -7,8 +7,12 @@
 [ext_resource path="res://script/path.gd" type="Script" id=5]
 [ext_resource path="res://assets/art/bg.png" type="Texture" id=6]
 [ext_resource path="res://assets/art/rotatingPlanet.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/bulletdebri.png" type="Texture" id=8]
 [ext_resource path="res://script/defenders.gd" type="Script" id=9]
 [ext_resource path="res://script/bullets.gd" type="Script" id=10]
+[ext_resource path="res://script/debris.gd" type="Script" id=11]
+[ext_resource path="res://scene/derbis_decay.tscn" type="PackedScene" id=12]
+[ext_resource path="res://script/debriMap.gd" type="Script" id=14]
 
 [sub_resource type="TileSet" id=1]
 0/name = "pixel.png 0"
@@ -60,9 +64,26 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="TileSet" id=10]
+0/name = "bulletdebri.png 0"
+0/texture = ExtResource( 8 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 1, 1 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
 [node name="main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 32, 32 )
 current = true
 zoom = Vector2( 0.1, 0.1 )
@@ -91,6 +112,8 @@ script = ExtResource( 3 )
 [node name="InvaderTimer" type="Timer" parent="map/invaders"]
 wait_time = 1.5
 
+[node name="debris" type="Node2D" parent="map/invaders"]
+
 [node name="planetArea" type="Area2D" parent="map"]
 position = Vector2( 32, 32 )
 collision_mask = 8
@@ -103,7 +126,6 @@ shape = SubResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="map/planetArea"]
 z_index = 1
 frames = SubResource( 9 )
-frame = 5
 playing = true
 
 [node name="defenders" type="Node2D" parent="map"]
@@ -112,5 +134,21 @@ script = ExtResource( 9 )
 [node name="bullets" type="Node2D" parent="map/defenders"]
 script = ExtResource( 10 )
 
+[node name="debris" type="Node2D" parent="map/defenders"]
+script = ExtResource( 11 )
+
+[node name="debriMap" type="TileMap" parent="map/defenders/debris"]
+z_index = 1
+tile_set = SubResource( 10 )
+cell_size = Vector2( 1, 1 )
+format = 1
+script = ExtResource( 14 )
+
+[node name="derbis_decay" parent="map/defenders/debris" instance=ExtResource( 12 )]
+
+[node name="bullet_cooldown" type="Timer" parent="map/defenders"]
+wait_time = 0.5
+
 [connection signal="timeout" from="map/invaders/InvaderTimer" to="map/invaders" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="map/planetArea" to="map/planetArea" method="_on_planetArea_body_entered"]
+[connection signal="timeout" from="map/defenders/bullet_cooldown" to="map/defenders" method="_on_bullet_cooldown_timeout"]

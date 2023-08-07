@@ -47,7 +47,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 21 )
 animation = "fire"
-frame = 4
+frame = 5
 speed_scale = 5.0
 playing = true
 offset = Vector2( 0.5, 0.5 )
@@ -59,7 +59,6 @@ scale = Vector2( 0.05, 0.05 )
 shape = SubResource( 22 )
 
 [node name="pathfinder22" type="Node2D" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0.65098 )
 z_index = -1
 
@@ -256,6 +255,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 0.5, 0.5 )
 
 [node name="pathfinder337" type="Node2D" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.65098 )
 z_index = -1
 
@@ -279,3 +279,17 @@ position = Vector2( -1, -2 )
 [node name="Sprite" type="Sprite" parent="pathfinder337/Position3"]
 texture = ExtResource( 2 )
 offset = Vector2( 0.5, 0.5 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.1, 0.1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -15, -5, -15, -15, 5, -15, 15, -15, 15, 15, -15, 15 )
+
+[node name="despawn_timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="despawn_timer" to="." method="_on_despawn_timer_timeout"]

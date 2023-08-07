@@ -5,15 +5,13 @@ var bullet_rotation = [0,90,90,180,180,270,270,0]
 var bullet_scene = load("res://scene/bullet.tscn")
 
 
-
-
 var bullet_path
 
 
 func _ready():
 	
 #	print_debug(bullet_path)
-	spawn_bullet(0)
+#	spawn_bullet(0)
 	pass # Replace with function body.
 
 
@@ -24,4 +22,8 @@ func spawn_bullet(idx):
 	add_child(bullet)
 	bullet.set_bullet_map(get_parent().get_bullet_map())
 	bullet.fire()
-	pass
+
+func add_debris(pos):
+	get_parent().add_debries(pos)
+
+

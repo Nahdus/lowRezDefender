@@ -25,7 +25,11 @@ func add_invader():
 	invader.drop_invader(origin[index],rotations[index],index)
 	invader.start()
 	
-	
+func add_debris(pos):
+	print_debug("debri")
+	print_debug(pos)
+	pass
+
 func remove_invader(node):
 	node.queue_free()
 	pass

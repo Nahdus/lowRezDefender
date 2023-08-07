@@ -45,10 +45,9 @@ func find_next_pos():
 
 func reposition():
 	var pos = find_next_pos()
-	self.set_position(pos+position_offset[path_index])
 	if pos == bullet_despawn_points[path_index]:
 		despawn_bullet()
-#	print_debug(self.position)
+	self.set_position(pos+position_offset[path_index])
 	
 
 func _process(delta):
@@ -58,3 +57,20 @@ func _process(delta):
 			reposition()
 			_time = 0
 	
+
+
+func shatter_bullet():
+	get_parent().add_debris(self.position)
+	$AnimatedSprite.visible =false
+	$despawn_timer.start()
+	
+func _on_Area2D_body_entered(body):
+	if "invader" in body.name:
+#		print_debug("collided with a invader")
+		shatter_bullet()
+	pass # Replace with function body.
+
+
+func _on_despawn_timer_timeout():
+	self.queue_free()
+	pass # Replace with function body.
